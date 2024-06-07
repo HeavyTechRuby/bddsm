@@ -1,9 +1,25 @@
 # BDDSM
 
-Behaviour Driven Development SM
+Behavior Driven Development SM
 
-Hard Testing Framework. Multi-paradigm spec/feature/testunit-agnostic syntax support.
+Hard Testing Framework. Multi-paradigm spec/feature/xunit-agnostic syntax support.
 
 ## Usage
 
-TODO
+Describe:
+
+```ruby
+describe "average" do
+  let(:numbers) { [1, 2, 3] }
+
+  let(:average) { numbers.average }
+
+  it { expect(average).to eq 2 }
+end
+```
+
+Execute
+
+```bash
+bddsm test/average_spec.rb
+```
