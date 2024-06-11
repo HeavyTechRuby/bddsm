@@ -1,27 +1,29 @@
 # frozen_string_literal: true
 
 module BDDSM
-  class Result
-    attr_reader :successes, :failures
+  class ExecutionStatistics
+    attr_reader :successes, :failures, :errors
 
     def initialize
       @successes = 0
       @failures = []
+      @errors = []
       @listeners = []
     end
 
-    def failures_count = @failures.size
-
     def register_success
       @successes += 1
-
       @listeners.each(&:success)
     end
 
-    def register_failure(error, location:)
-      @failures << Failure.new(error, location:)
-
+    def register_failure(failure)
+      @failures << failure
       @listeners.each(&:failure)
+    end
+
+    def register_error(error)
+      @errors << error
+      @listeners.each(&:error)
     end
 
     def subscribe(listener)

@@ -1,19 +1,20 @@
 require 'singleton'
 
-require_relative 'bddsm/actual'
+require_relative 'bddsm/expectation'
 require_relative 'bddsm/describe'
-require_relative 'bddsm/equal_matcher'
-require_relative 'bddsm/execution'
-require_relative 'bddsm/failure'
+require_relative 'bddsm/matcher/exception'
+require_relative 'bddsm/matcher/equal'
+require_relative 'bddsm/matcher/not_equal'
+require_relative 'bddsm/it'
 require_relative 'bddsm/file'
-require_relative 'bddsm/progress_report'
-require_relative 'bddsm/result'
+require_relative 'bddsm/report'
+require_relative 'bddsm/execution_statistics'
 require_relative 'bddsm/suite'
 
 module BDDSM
-  def self.describe(title, &)
+  def self.describe(title, &block)
     # TODO: фиксировать файл, из которого подгружен describe,
     # чтобы потом корректно отображать строку ошибки и собирать статистику
-    Suite.instance.add_describe Describe.new(title, &)
+    Suite.instance.add_describe Describe.new(title, &block)
   end
 end

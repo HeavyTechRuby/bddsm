@@ -6,7 +6,7 @@ module BDDSM
       @path = path
     end
 
-    def run
+    def load
       require @path
     end
   end
