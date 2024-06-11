@@ -1,6 +1,6 @@
 require 'singleton'
 
-module TestingFramework
+module BDDSM
   class Actual
     attr_reader :value
 
