@@ -11,7 +11,7 @@ Hard Testing Framework. Multi-paradigm spec/feature/xunit-agnostic syntax suppor
 Describe:
 
 ```ruby
-describe "average" do
+BDDSM.describe "average" do
   let(:numbers) { [1, 2, 3] }
 
   let(:average) { numbers.average }
