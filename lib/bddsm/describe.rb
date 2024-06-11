@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require 'execution'
-
 module BDDSM
   class Describe
     def initialize(title, &block)
