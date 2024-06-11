@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ecd5d8c3932674eff519/maintainability)](https://codeclimate.com/github/HeavyTechRuby/bddsm/maintainability)
 
-Behavior Driven Development SM
+**B**ehavior **D**riven **D**evelopment **S**emantic **M**achine
 
 Hard Testing Framework. Multi-paradigm spec/feature/xunit-agnostic syntax support.
 
