@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require_relative '../lib/testing_framework'
+
+suite = TestingFramework::Suite.instance
+
+suite.add_path Pathname.new(__dir__).join('..', ARGV[0])
+suite.run
