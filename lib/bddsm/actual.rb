@@ -4,6 +4,7 @@ module BDDSM
       @value = value
     end
 
+    # Плохо, что Actual знает про suite и накопитель результатов
     def to(matcher)
       suite.result_collector.register_success if matcher.check(@value)
     end
