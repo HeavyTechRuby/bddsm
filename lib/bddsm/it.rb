@@ -11,15 +11,6 @@ module BDDSM
       end
     end
 
-    class CodeException < ::Exception
-      attr_reader :line_code
-      attr_accessor :context_title
-      def initialize(msg, line_code:)
-        @line_code = line_code
-        super msg
-      end
-    end
-
     def initialize(describe:, &block)
       @describe = describe
       @block = block
@@ -30,7 +21,7 @@ module BDDSM
     rescue Matcher::Exception => e
       raise It::Exception.new(e, line_code: @line_code)
     rescue => e
-      raise It::CodeException.new(e, line_code: e.backtrace.first)
+      raise It::Exception.new(e, line_code: e.backtrace.first)
     end
 
     def expect(actual)
