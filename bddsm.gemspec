@@ -8,4 +8,5 @@ Gem::Specification.new do |s|
   s.files       = Dir["lib/**/*"]
   s.homepage    = "https://github.com/HeavyTechRuby/bddsm"
   s.bindir      = "bin"
+  s.executables = "bddsm"
 end
