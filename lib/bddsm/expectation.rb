@@ -1,5 +1,5 @@
 module BDDSM
-  class Actual
+  class Expectation
     def initialize(value:)
       @value = value
     end

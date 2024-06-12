@@ -26,22 +26,13 @@ module BDDSM
       raise It::Exception.new(e, line_code: e.backtrace.first)
     end
 
-    # Неожиданно, что конструкция expect(1) - возвращает Actual
-    # Напрашивается, что она должна возвратить Expectation
-    # и у этого ожидания есть метод to (который фактически и проверяет это самое ожидание)
     def expect(actual)
       @line_code = caller.first
-      @actual = Actual.new(value: actual)
+      @expectation = Expectation.new(value: actual)
     end
 
-    # Этот метод как будто не должен быть в It
-    def eq(expected)
-      @actual.eq expected
-    end
-
-    # Этот метод как будто не должен быть в It
-    def not_eq(expected)
-      @actual.not_eq expected
+    def method_missing(name, *args)
+      @expectation.public_send name, *args
     end
   end
 end

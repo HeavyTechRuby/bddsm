@@ -1,6 +1,6 @@
 require 'singleton'
 
-require_relative 'bddsm/actual'
+require_relative 'bddsm/expectation'
 require_relative 'bddsm/describe'
 require_relative 'bddsm/matcher/exception'
 require_relative 'bddsm/matcher/equal'
