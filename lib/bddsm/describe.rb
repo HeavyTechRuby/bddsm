@@ -12,14 +12,14 @@ module BDDSM
     end
 
     def it(&block)
-      It.new(describe: self, &block).run
+      It.new(&block).run
     rescue It::Exception => e
       e.context_title = @title
       suite.result_collector.register_failure(e)
     end
 
     def suite
-      Suite.instance
+      @suite ||= Suite.instance
     end
   end
 end

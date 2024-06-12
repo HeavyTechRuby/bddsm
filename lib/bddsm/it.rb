@@ -11,8 +11,7 @@ module BDDSM
       end
     end
 
-    def initialize(describe:, &block)
-      @describe = describe
+    def initialize(&block)
       @block = block
     end
 
