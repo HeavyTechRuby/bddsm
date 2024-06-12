@@ -1,20 +1,23 @@
+# frozen_string_literal: true
+
 module BDDSM
   class Expectation
-    def initialize(value:)
-      @value = value
+    def initialize(actial_value:)
+      @actial_value = actial_value
     end
 
-    # Плохо, что Actual знает про suite и накопитель результатов
+    # Проверка ожидания на корректность, другими словами реализация ожидания
     def to(matcher)
-      suite.result_collector.register_success if matcher.check(@value)
+      # Плохо, что Expectation знает про suite и накопитель результатов
+      suite.result_collector.register_success if matcher.check(actual_value: @actial_value)
     end
 
-    def eq(expected)
-      Matcher::Equal.new(expected: expected)
+    def eq(expected_value)
+      Matcher::Equal.new(expected_value: expected_value)
     end
 
-    def not_eq(expected)
-      Matcher::NotEqual.new(expected: expected)
+    def not_eq(expected_value)
+      Matcher::NotEqual.new(expected_value: expected_value)
     end
 
     def suite

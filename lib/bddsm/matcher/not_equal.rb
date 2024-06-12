@@ -3,15 +3,15 @@
 module BDDSM
   module Matcher
     class NotEqual
-      def initialize(expected:)
-        @expected = expected
+      def initialize(expected_value:)
+        @expected_value = expected_value
       end
 
-      def check(actual)
-        if actual != @expected
+      def check(actual_value:)
+        if actual_value != @expected_value
           return true
         else
-          raise Matcher::Exception.new("Expected #{actual} to not eq #{@expected}")
+          raise Matcher::Exception.new("Expected #{actual_value} to not eq #{@expected_value}")
         end
       end
     end

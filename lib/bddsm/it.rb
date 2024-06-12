@@ -26,9 +26,9 @@ module BDDSM
       raise It::Exception.new(e, line_code: e.backtrace.first)
     end
 
-    def expect(actual)
+    def expect(actial_value)
       @line_code = caller.first
-      @expectation = Expectation.new(value: actual)
+      @expectation = Expectation.new(actial_value: actial_value)
     end
 
     def method_missing(name, *args)
