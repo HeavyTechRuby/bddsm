@@ -1,11 +1,11 @@
 module BDDSM
-  class Expectation
-    def initialize(actual_value:)
-      @actual_value = actual_value
+  class Actual
+    def initialize(value:)
+      @value = value
     end
 
     def to(matcher)
-      suite.register_success if matcher.check(@actual_value)
+      suite.register_success if matcher.check(@value)
     end
 
     def eq(expected)

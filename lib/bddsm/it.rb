@@ -33,15 +33,15 @@ module BDDSM
 
     def expect(actual)
       @line_code = caller.first
-      @expectation = Expectation.new(actual_value: actual)
+      @actual = Actual.new(value: actual)
     end
 
     def eq(expected)
-      @expectation.eq expected
+      @actual.eq expected
     end
 
     def not_eq(expected)
-      @expectation.not_eq expected
+      @actual.not_eq expected
     end
   end
 end
