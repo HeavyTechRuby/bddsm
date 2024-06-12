@@ -5,7 +5,7 @@ module BDDSM
     end
 
     def to(matcher)
-      suite.register_success if matcher.check(@value)
+      suite.result_collector.register_success if matcher.check(@value)
     end
 
     def eq(expected)

@@ -8,7 +8,7 @@ require_relative 'bddsm/matcher/not_equal'
 require_relative 'bddsm/it'
 require_relative 'bddsm/file'
 require_relative 'bddsm/report'
-require_relative 'bddsm/execution_statistics'
+require_relative 'bddsm/result_collector'
 require_relative 'bddsm/suite'
 
 module BDDSM

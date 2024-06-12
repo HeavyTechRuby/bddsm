@@ -14,7 +14,7 @@ module BDDSM
     def it(&block)
       It.new(describe: self, &block).run
     rescue It::Exception, It::CodeException => e
-      suite.execution_statistics.register_failure(e)
+      suite.result_collector.register_failure(e)
     end
 
     def suite

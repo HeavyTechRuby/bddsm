@@ -8,7 +8,7 @@ module BDDSM
       @files = []
       @describes = []
 
-      execution_statistics.subscribe report
+      result_collector.subscribe report
     end
 
     def run
@@ -18,7 +18,7 @@ module BDDSM
     end
 
     def report
-      @report ||= BDDSM::Report.new(execution_statistics: execution_statistics, io: $stdout)
+      @report ||= BDDSM::Report.new(result_collector: result_collector, io: $stdout)
     end
 
     def add_path(path)
@@ -29,16 +29,8 @@ module BDDSM
       @describes << describe
     end
 
-    def register_success
-      execution_statistics.register_success
-    end
-
-    def register_failure(error)
-      execution_statistics.register_failure(error)
-    end
-
-    def execution_statistics
-      @result ||= BDDSM::ExecutionStatistics.new
+    def result_collector
+      @result_collector ||= BDDSM::ResultCollector.new
     end
 
   private

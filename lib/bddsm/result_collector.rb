@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BDDSM
-  class ExecutionStatistics
+  class ResultCollector
     attr_reader :successes, :failures
 
     def initialize
