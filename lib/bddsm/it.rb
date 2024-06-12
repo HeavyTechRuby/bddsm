@@ -4,6 +4,7 @@ module BDDSM
   class It
     class Exception < ::Exception
       attr_reader :line_code
+      attr_accessor :context_title
       def initialize(msg, line_code:)
         @line_code = line_code
         super msg
@@ -12,6 +13,7 @@ module BDDSM
 
     class CodeException < ::Exception
       attr_reader :line_code
+      attr_accessor :context_title
       def initialize(msg, line_code:)
         @line_code = line_code
         super msg

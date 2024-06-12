@@ -14,6 +14,7 @@ module BDDSM
     def it(&block)
       It.new(describe: self, &block).run
     rescue It::Exception, It::CodeException => e
+      e.context_title = @title
       suite.result_collector.register_failure(e)
     end
 

@@ -23,8 +23,9 @@ module BDDSM
       @io.puts
       @io.puts 'Failures:'
       @result_collector.failures.each do |failure|
-        @io.puts failure
-        @io.puts "  at #{failure.line_code}"
+        @io.puts "#{failure.context_title} failed:"
+        @io.puts "  #{failure}"
+        @io.puts "    at #{failure.line_code}"
       end
     end
   end
