@@ -2,12 +2,11 @@
 
 module BDDSM
   class ExecutionStatistics
-    attr_reader :successes, :failures, :errors
+    attr_reader :successes, :failures
 
     def initialize
       @successes = 0
       @failures = []
-      @errors = []
       @listeners = []
     end
 
@@ -19,11 +18,6 @@ module BDDSM
     def register_failure(failure)
       @failures << failure
       @listeners.each(&:failure)
-    end
-
-    def register_error(error)
-      @errors << error
-      @listeners.each(&:error)
     end
 
     def subscribe(listener)
