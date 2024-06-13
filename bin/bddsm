@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require_relative '../lib/bddsm'
+
+suite = BDDSM::Suite.instance
+
+suite.add_path File.join(Dir.pwd, ARGV[0])
+suite.run
