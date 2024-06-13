@@ -8,11 +8,9 @@ module BDDSM
       end
 
       def check(actual_value:)
-        if actual_value == @expected_value
-          return true
-        else
-          raise Matcher::Exception.new("Expected #{actual_value} to eq #{@expected_value}")
-        end
+        return true if actual_value == @expected_value
+
+        raise Matcher::Exception.new("Expected #{actual_value} to eq #{@expected_value}")
       end
     end
   end

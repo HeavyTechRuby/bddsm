@@ -2,6 +2,8 @@
 
 module BDDSM
   class Actual
+    MATCH_METHODS = %w[eq not_eq].freeze
+
     def initialize(value:)
       @value = value
     end
@@ -11,11 +13,11 @@ module BDDSM
     end
 
     def eq(expected_value)
-      Matcher::Equal.new(expected_value: expected_value)
+      Matcher::Equal.new(expected_value:)
     end
 
     def not_eq(expected_value)
-      Matcher::NotEqual.new(expected_value: expected_value)
+      Matcher::NotEqual.new(expected_value:)
     end
 
     def suite

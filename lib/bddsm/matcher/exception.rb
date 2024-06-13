@@ -1,6 +1,6 @@
 module BDDSM
   module Matcher
-    class Exception < ::Exception
+    class Exception < StandardError
     end
   end
 end

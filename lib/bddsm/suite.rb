@@ -18,7 +18,7 @@ module BDDSM
     end
 
     def report
-      @report ||= BDDSM::Report.new(result: result, io: $stdout)
+      @report ||= BDDSM::Report.new(result:, io: $stdout)
     end
 
     def add_path(path)
@@ -33,7 +33,7 @@ module BDDSM
       @result ||= BDDSM::Result.new
     end
 
-  private
+    private
 
     def load_files
       @files.each(&:load)
@@ -46,6 +46,5 @@ module BDDSM
     def print_report
       report.print
     end
-
   end
 end
