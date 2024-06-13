@@ -28,11 +28,11 @@ module BDDSM
 
     def expect(actial_value)
       @line_code = caller.first
-      @expectation = Expectation.new(actial_value: actial_value)
+      @actual = Actual.new(value: actial_value)
     end
 
     def method_missing(name, *args)
-      @expectation.public_send name, *args
+      @actual.public_send name, *args
     end
   end
 end
