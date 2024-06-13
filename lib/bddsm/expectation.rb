@@ -9,7 +9,7 @@ module BDDSM
     # Проверка ожидания на корректность, другими словами реализация ожидания
     def to(matcher)
       # Плохо, что Expectation знает про suite и накопитель результатов
-      suite.result_collector.register_success if matcher.check(actual_value: @actial_value)
+      suite.result.register_success if matcher.check(actual_value: @actial_value)
     end
 
     def eq(expected_value)

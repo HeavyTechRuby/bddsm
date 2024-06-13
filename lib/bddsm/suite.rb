@@ -8,7 +8,7 @@ module BDDSM
       @files = []
       @describes = []
 
-      result_collector.subscribe report
+      result.subscribe report
     end
 
     def run
@@ -18,7 +18,7 @@ module BDDSM
     end
 
     def report
-      @report ||= BDDSM::Report.new(result_collector: result_collector, io: $stdout)
+      @report ||= BDDSM::Report.new(result: result, io: $stdout)
     end
 
     def add_path(path)
@@ -29,8 +29,8 @@ module BDDSM
       @describes << describe
     end
 
-    def result_collector
-      @result_collector ||= BDDSM::ResultCollector.new
+    def result
+      @result ||= BDDSM::Result.new
     end
 
   private

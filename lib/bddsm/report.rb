@@ -2,8 +2,8 @@
 
 module BDDSM
   class Report
-    def initialize(result_collector:, io:)
-      @result_collector = result_collector
+    def initialize(result:, io:)
+      @result = result
       @io = io
     end
 
@@ -18,11 +18,11 @@ module BDDSM
     def print
       @io.puts
       @io.puts
-      @io.puts "Success: #{@result_collector.successes}"
-      @io.puts "Failures: #{@result_collector.failures.count}"
+      @io.puts "Success: #{@result.successes}"
+      @io.puts "Failures: #{@result.failures.count}"
       @io.puts
       @io.puts 'Failures:'
-      @result_collector.failures.each do |failure|
+      @result.failures.each do |failure|
         @io.puts "#{failure.context_title} failed:"
         @io.puts "  #{failure}"
         @io.puts "    at #{failure.line_code}"

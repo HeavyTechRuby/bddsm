@@ -15,7 +15,7 @@ module BDDSM
       It.new(&block).run
     rescue It::Exception => e
       e.context_title = @title
-      suite.result_collector.register_failure(e)
+      suite.result.register_failure(e)
     end
 
     def suite
