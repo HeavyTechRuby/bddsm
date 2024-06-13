@@ -2,6 +2,7 @@
 
 module BDDSM
   class Describe
+    attr_reader :title
     def initialize(title, &block)
       @title = title
       @block = block
@@ -12,10 +13,7 @@ module BDDSM
     end
 
     def it(&block)
-      It.new(&block).run
-    rescue It::Exception => e
-      e.context_title = @title
-      suite.result.register_failure(e)
+      It.new(describe: self, &block).run
     end
 
     def suite

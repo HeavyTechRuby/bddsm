@@ -3,32 +3,34 @@
 module BDDSM
   class It
     class Exception < ::Exception
-      attr_reader :line_code
-      attr_accessor :context_title
-      def initialize(msg, line_code:)
+      attr_reader :line_code, :context_title
+      def initialize(msg, line_code:, context_title:)
         @line_code = line_code
+        @context_title = context_title
         super msg
       end
     end
 
-    # Сейчас It ничего не знает о Describe
-    def initialize(&block)
+    def initialize(describe:, &block)
+      @describe = describe
       @block = block
     end
 
-    # Когда спотыкается на ошибке, он передает ее для обработки Describe, который в свою очередь уже обогащает ошибку
-    # своим наименованием, и регистрирует в накопителе результатов
     def run
       instance_eval(&@block)
     rescue Matcher::Exception => e
-      raise It::Exception.new(e, line_code: @line_code)
+      suite.result.register_failure(It::Exception.new(e, line_code: @line_code, context_title: @describe.title))
     rescue => e
-      raise It::Exception.new(e, line_code: e.backtrace.first)
+      suite.result.register_failure(It::Exception.new(e, line_code: e.backtrace.first, context_title: @describe.title))
     end
 
     def expect(actial_value)
       @line_code = caller.first
       @actual = Actual.new(value: actial_value)
+    end
+
+    def suite
+      @suite ||= Suite.instance
     end
 
     def method_missing(name, *args)
