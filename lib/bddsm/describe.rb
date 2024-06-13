@@ -17,9 +17,9 @@ module BDDSM
     end
 
     def let(name, &)
-      self.singleton_class.instance_eval { attr_accessor name.to_sym } unless self.respond_to?(name.to_sym)
+      singleton_class.instance_eval { attr_accessor name.to_sym } unless respond_to?(name.to_sym)
       @memoized_lets[name] = instance_exec(&)
-      self.instance_variable_set("@#{name}", @memoized_lets[name])
+      instance_variable_set("@#{name}", @memoized_lets[name])
     end
   end
 end
