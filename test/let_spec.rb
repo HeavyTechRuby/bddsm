@@ -1,4 +1,4 @@
-BDDSM.describe 'BDDSM::Describe.let' do # rubocop:disable Metrics/BlockLength
+BDDSM.describe 'BDDSM::Describe.let' do
   # let should define variable accessible from 'it'
   let(:a) { 1 }
   it { expect(a).to eq 1 }
@@ -14,29 +14,34 @@ BDDSM.describe 'BDDSM::Describe.let' do # rubocop:disable Metrics/BlockLength
   it { expect(three).to eq 4 }
 
   # checks if let block executes only once
-  module Count # rubocop:disable Lint/ConstantDefinitionInBlock
-    module_function
+  class Count
+    @@instance_count ||= 0
 
-    @instance_count ||= 0
+    class << self
+      def instance_count
+        @@instance_count
+      end
 
-    def instance_count
-      @instance_count
+      def instance_count=(count)
+        @@instance_count = count
+      end
     end
 
-    def test(counter)
-      @instance_count += 1
+    def increment(counter)
+      @@instance_count += 1
       counter + 1
     end
   end
 
-  # test module class variables works
+  # test class variables works and 2 inctance
   it do
-    Count.test(2)
-    Count.test(3)
+    Count.new.increment(2)
+    Count.new.increment(3)
     expect(Count.instance_count).to eq 2
   end
 
-  let(:count) { Count.test(4) }
+  Count.instance_count = 0
+  let(:count) { Count.new.increment(4) }
 
   it { expect(count).to eq 5 }
   it { expect(Count.instance_count).to eq 1 }
