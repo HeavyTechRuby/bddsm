@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module BDDSM
   class EqualMatcher
     def initialize(expected:, location:)
