@@ -10,17 +10,13 @@ module BDDSM
       @listeners = []
     end
 
-    def failures_count = @failures.size
-
     def register_success
       @successes += 1
-
       @listeners.each(&:success)
     end
 
-    def register_failure(error, location:)
-      @failures << Failure.new(error, location:)
-
+    def register_failure(failure)
+      @failures << failure
       @listeners.each(&:failure)
     end
 

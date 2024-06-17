@@ -2,6 +2,8 @@
 
 module BDDSM
   class Describe
+    attr_reader :title
+
     def initialize(title, &block)
       @title = title
       @block = block
@@ -12,7 +14,11 @@ module BDDSM
     end
 
     def it(&)
-      Execution.new(describe: self, &).run
+      It.new(describe: self, &).run
+    end
+
+    def suite
+      @suite ||= Suite.instance
     end
   end
 end
