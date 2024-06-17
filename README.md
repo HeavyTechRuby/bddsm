@@ -1,6 +1,7 @@
 # BDDSM
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ecd5d8c3932674eff519/maintainability)](https://codeclimate.com/github/HeavyTechRuby/bddsm/maintainability)
+[![Hits-of-Code](https://hitsofcode.com/github/HeavyTechRuby/bddsm?branch=main)](https://hitsofcode.com/github/HeavyTechRuby/bddsm/view?branch=main)
 
 **B**ehavior **D**riven **D**evelopment **S**emantic **M**achine
 
