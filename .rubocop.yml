@@ -12,12 +12,11 @@ Lint/ConstantDefinitionInBlock:
     - test/**/*.rb
 
 Metrics/BlockLength:
-  Max: 30
   Exclude:
     - test/**/*.rb
 
 Metrics/MethodLength:
-  Max: 11
+  Max: 10
 
 Style/Documentation:
   Enabled: false
