@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module BDDSM
   class Actual
     attr_reader :value
