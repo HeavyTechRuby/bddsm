@@ -13,38 +13,19 @@ BDDSM.describe 'BDDSM::Describe.let' do
   let(:three) { 4 }
   it { expect(three).to eq 4 }
 
+  # spec for let with block inside block
   # checks if let block executes only once
-  class Count
-    @@instance_count ||= 0
+  def with_calls_counted
+    @calls_count ||= 0
+    @calls_count += 1
 
-    class << self
-      def instance_count
-        @@instance_count
-      end
-
-      def instance_count=(count)
-        @@instance_count = count
-      end
-    end
-
-    def increment(counter)
-      @@instance_count += 1
-      counter + 1
-    end
+    [yield, @calls_count]
   end
 
-  # test class variables works and 2 inctance
+  let(:five) { with_calls_counted { one + 1 } }
+
   it do
-    Count.new.increment(2)
-    Count.new.increment(3)
-    expect(Count.instance_count).to eq 2
+    expect(five[0]).to eq 2
+    expect(five[1]).to eq 1
   end
-
-  Count.instance_count = 0
-  let(:count) { Count.new.increment(4) }
-
-  it { expect(count).to eq 5 }
-  it { expect(Count.instance_count).to eq 1 }
-  it { expect(count).to eq 5 }
-  it { expect(Count.instance_count).to eq 1 }
 end

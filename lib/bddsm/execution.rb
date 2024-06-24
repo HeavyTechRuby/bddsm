@@ -2,8 +2,8 @@ module BDDSM
   class Execution
     def initialize(describe:, &block)
       @describe = describe
+      @memoized_lets ||= {}
       @block = block
-      @memoized_lets = {}
       memoized
     end
 

@@ -13,7 +13,7 @@ module BDDSM
       @io.print 'E'
     end
 
-    def finalize
+    def finalize # rubocop:disable Metrics/MethodLength
       @io.puts
       @io.puts
       @io.puts 'OK!'
