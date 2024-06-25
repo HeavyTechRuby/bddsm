@@ -13,19 +13,30 @@ BDDSM.describe 'BDDSM::Describe.let' do
   let(:three) { 4 }
   it { expect(three).to eq 4 }
 
-  # spec for let with block inside block
   # checks if let block executes only once
-  def with_calls_counted
-    @calls_count ||= 0
-    @calls_count += 1
+  # this class is needed to share class variable between expect examples insibe it block
+  # rubocop:disable  Style/ClassVars
+  class Count
+    @@calls_count ||= 0
 
-    [yield, @calls_count]
+    class << self
+      def calls_count
+        @@calls_count
+      end
+    end
+
+    def with_calls_counted
+      @@calls_count += 1
+
+      yield
+    end
   end
+  # rubocop:enable  Style/ClassVars
 
-  let(:five) { with_calls_counted { one + 1 } }
+  let(:five) { Count.new.with_calls_counted { one + 1 } }
 
   it do
-    expect(five[0]).to eq 2
-    expect(five[1]).to eq 1
+    expect(five).to eq 2
+    expect(Count.calls_count).to eq 1
   end
 end
