@@ -1,11 +1,25 @@
+---
+
 inherit_from: .rubocop_todo.yml
 
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
 
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+  Exclude:
+    - test/**/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*.rb
+
+Metrics/MethodLength:
+  Max: 10
 
 Style/Documentation:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
