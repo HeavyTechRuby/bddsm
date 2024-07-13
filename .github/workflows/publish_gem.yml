@@ -1,0 +1,30 @@
+name: Push gem to RubyGems.org after a tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  push:
+    name: Push gem to RubyGems.org
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ruby
+
+      - uses: dawidd6/action-publish-gem@v1
+        with:
+          api_key: ${{secrets.RUBYGEMS_API_KEY}}
+          github_token: ${{secrets.GITHUB_TOKEN}}

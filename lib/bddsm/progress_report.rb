@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module BDDSM
   class ProgressReport
     def initialize(result:, io:)
@@ -15,7 +13,7 @@ module BDDSM
       @io.print 'E'
     end
 
-    def finalize
+    def finalize # rubocop:disable Metrics/MethodLength
       @io.puts
       @io.puts
       @io.puts 'OK!'
