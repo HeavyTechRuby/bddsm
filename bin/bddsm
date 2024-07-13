@@ -3,7 +3,22 @@
 require 'pathname'
 require_relative '../lib/bddsm'
 
-suite = BDDSM::Suite.instance
+def add_all_test_files(path_pattern)
+  Dir.glob(path_pattern).each do |file|
+    BDDSM::Suite.instance.add_path(Pathname.new(file))
+  end
+end
 
-suite.add_path File.join(Dir.pwd, ARGV[0])
-suite.run
+def add_single_test_file(file_path)
+  test_file = Pathname.new(__dir__).join('..', file_path)
+  BDDSM::Suite.instance.add_path(test_file)
+end
+
+if ARGV.empty?
+  test_dir = Pathname.new(__dir__).join('..', 'test', '**', '*_spec.rb')
+  add_all_test_files(test_dir)
+else
+  add_single_test_file(ARGV[0])
+end
+
+BDDSM::Suite.instance.run
