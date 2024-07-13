@@ -16,10 +16,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: ruby
 
-      - uses: rubygems/release-gem@v1
+      - uses: dawidd6/action-publish-gem@v1
+        with:
+          api_key: ${{secrets.RUBYGEMS_API_KEY}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
