@@ -1,6 +1,6 @@
 module BDDSM
   class Describe
-    attr_reader :memoized_lets
+    attr_reader :memoized_lets, :comment
 
     def initialize(title, &block)
       @title = title
@@ -12,7 +12,8 @@ module BDDSM
       instance_eval(&@block)
     end
 
-    def it(&)
+    def it(comment = nil, &)
+      @comment = comment
       Execution.new(describe: self, &).run
     end
 
