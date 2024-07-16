@@ -1,4 +1,4 @@
-BDDSM.describe 'Test case with description' do
+BDDSM.describe 'Test case with comments' do
   it 'Description example 1' do
     expect(1).to eq 2
   end
