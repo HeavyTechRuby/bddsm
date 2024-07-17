@@ -25,5 +25,7 @@ module BDDSM
     def subscribe(listener)
       @listeners << listener
     end
+
+    def success? = @failures.empty?
   end
 end
