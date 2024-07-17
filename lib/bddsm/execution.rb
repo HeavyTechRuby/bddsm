@@ -21,7 +21,7 @@ module BDDSM
 
     def location = @block.source_location
 
-    def comment = @describe.comment
+    def comment = @describe.it_comments[self]
 
     private
 
