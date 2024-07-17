@@ -22,3 +22,9 @@ else
 end
 
 BDDSM::Suite.instance.run
+
+if BDDSM::Suite.instance.result.success?
+  exit 0
+else
+  exit 1
+end
