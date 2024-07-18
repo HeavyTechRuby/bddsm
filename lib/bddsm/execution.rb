@@ -16,10 +16,12 @@ module BDDSM
     end
 
     def eq(expected)
-      EqualMatcher.new(expected:, location:)
+      EqualMatcher.new(expected:, location:, comment:)
     end
 
     def location = @block.source_location
+
+    def comment = @describe.it_comments[self]
 
     private
 
