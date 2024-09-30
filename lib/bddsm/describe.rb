@@ -24,5 +24,9 @@ module BDDSM
       @memoized_lets[name] = instance_exec(&)
       instance_variable_set("@#{name}", @memoized_lets[name])
     end
+
+    def context(title, &)
+      Suite.instance.add_describe Describe.new(title, &)
+    end
   end
 end
